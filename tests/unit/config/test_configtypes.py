@@ -249,7 +249,8 @@ class TestAll:
         ]:
             return
         elif (isinstance(klass, functools.partial) and klass.func in [
-                configtypes.ListOrValue, configtypes.List, configtypes.Dict]):
+                configtypes.ListOrValue, configtypes.FlagList, configtypes.List,
+                configtypes.Dict]):
             # ListOrValue: "- /" -> "/"
             # List: "- /" -> ["/"]
             # Dict: '{":": "A"}' -> ':: A'
