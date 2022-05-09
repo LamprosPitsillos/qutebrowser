@@ -125,32 +125,6 @@ def smoke_test(executable, debug):
         # PyInstaller debug output
         r'\[.*\] PyInstaller Bootloader .*',
         r'\[.*\] LOADER: .*',
-
-        # https://github.com/qutebrowser/qutebrowser/issues/4919
-        (r'objc\[.*\]: .* One of the two will be used\. '
-         r'Which one is undefined\.'),
-        (r'QCoreApplication::applicationDirPath: Please instantiate the '
-         r'QApplication object first'),
-        (r'\[.*:ERROR:mach_port_broker.mm\(48\)\] bootstrap_look_up '
-         r'org\.chromium\.Chromium\.rohitfork\.1: Permission denied \(1100\)'),
-        (r'\[.*:ERROR:mach_port_broker.mm\(43\)\] bootstrap_look_up: '
-         r'Unknown service name \(1102\)'),
-
-        (r'[0-9:]* WARNING: The available OpenGL surface format was either not '
-         r'version 3\.2 or higher or not a Core Profile\.'),
-        r'Chromium on macOS will fall back to software rendering in this case\.',
-        r'Hardware acceleration and features such as WebGL will not be available\.',
-        r'Unable to create basic Accelerated OpenGL renderer\.',
-        r'Core Image is now using the software OpenGL renderer\. This will be slow\.',
-
-        # Windows N:
-        # https://github.com/microsoft/playwright/issues/2901
-        (r'\[.*:ERROR:dxva_video_decode_accelerator_win.cc\(\d+\)\] '
-         r'DXVAVDA fatal error: could not LoadLibrary: .*: The specified '
-         r'module could not be found. \(0x7E\)'),
-
-        # https://github.com/qutebrowser/qutebrowser/issues/3719
-        '[0-9:]* ERROR: Load error: ERR_FILE_NOT_FOUND',
     ]
 
     proc = _smoke_test_run(executable)
