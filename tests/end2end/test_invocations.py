@@ -32,7 +32,7 @@ import pytest
 from qutebrowser.qt.core import QProcess, QPoint
 
 from helpers import testutils
-from qutebrowser.utils import qtutils, utils
+from qutebrowser.utils import qtutils, utils, version
 
 
 ascii_locale = pytest.mark.skipif(sys.hexversion >= 0x03070000,
@@ -858,7 +858,10 @@ def test_sandboxing(
 ):
     if not request.config.webengine:
         pytest.skip("Skipped with QtWebKit")
-    elif sandboxing == "enable-all" and testutils.disable_seccomp_bpf_sandbox():
+    elif (
+        sandboxing == "enable-all" and
+        (testutils.disable_seccomp_bpf_sandbox() or version.is_flatpak())
+    ):
         pytest.skip("Full sandboxing not supported")
 
     args = _base_args(request.config) + [
