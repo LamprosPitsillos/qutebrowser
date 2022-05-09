@@ -140,11 +140,11 @@ def test_quteproc_skip_and_wait_for(qtbot, quteproc):
         quteproc.wait_for(message='This will not match')
 
 
-@pytest.mark.skip(reason="FIXME:qt6 reintroduce")
 def test_qt_log_ignore(qtbot, quteproc):
     """Make sure the test passes when logging a qt_log_ignore message."""
     with qtbot.wait_signal(quteproc.got_error):
-        quteproc.send_cmd(':message-error "SpellCheck: test"')
+        quteproc.send_cmd(
+            ':message-error "QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to blabla"')
 
 
 def test_quteprocess_quitting(qtbot, quteproc_process):
@@ -189,10 +189,9 @@ def test_quteprocess_quitting(qtbot, quteproc_process):
     pytest.param(
         '{"created": 86400, "msecs": 0, "levelname": "VDEBUG", "name": "foo", '
         '"module": "foo", "funcName": "foo", "lineno": 0, "levelno": 9, '
-        '"message": "SpellCheck: test"}',
+        '"message": "QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to blabla"}',
         {'expected': True},
-        id='expected message',
-        marks=pytest.mark.skip("FIXME:qt6 reintroduce")),
+        id='expected message'),
 
     pytest.param(
         '{"created": 86400, "msecs": 0, "levelname": "DEBUG", "name": "qt", '
